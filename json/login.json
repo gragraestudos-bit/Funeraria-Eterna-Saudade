@@ -1,0 +1,25 @@
+{
+    "usuarios": [
+        {
+            "id": 1,
+            "nome": "Anthony da Silva e Sinuca",
+            "usuario": "Toninho_sinuca",
+            "senha": "01234",
+            "cargo": "Administrador de Marketing"
+        },
+        {
+            "id": 2,
+            "nome": "Guilherme Giovanni Fargoni",
+            "usuario": "Gui.Fargoni",
+            "senha": "56789",
+            "cargo": "Gerente"
+        },
+        {
+            "id": 3,
+            "nome": "Diego Ursini Figueredo",
+            "usuario": "UrsiniUrsovsky_Diego",
+            "senha": "02468",
+            "cargo": "Aprendiz"
+        }
+    ]
+}
