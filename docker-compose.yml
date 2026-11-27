@@ -1,14 +1,14 @@
 services:
   node:
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile
     volumes:
-      - ./:/usr/src/app
+      - ./backend:/usr/src/app
       - /usr/src/app/node_modules
     environment:
-      - NODE_ENV=development
-      - PORT=3000
+      NODE_ENV: development
+      PORT: 3000
     ports:
       - "${PORT:-3000}:3000"
     depends_on:
@@ -19,11 +19,11 @@ services:
     image: postgres:18-alpine
     volumes:
       - db_data:/var/lib/postgresql
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./backend/init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
-      - POSTGRES_USER=usuario
-      - POSTGRES_PASSWORD=senha
-      - POSTGRES_DB=bancodados
+      POSTGRES_USER: usuario
+      POSTGRES_PASSWORD: senha
+      POSTGRES_DB: bancodados
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U \"$${POSTGRES_USER}\" -d \"$${POSTGRES_DB}\""]
       interval: 5s
@@ -36,7 +36,7 @@ services:
     ports:
       - "${PGWEB_PORT:-8081}:8081"
     environment:
-      - PGWEB_DATABASE_URL=postgres://usuario:senha@database:5432/bancodados?sslmode=disable
+      PGWEB_DATABASE_URL: postgres://usuario:senha@database:5432/bancodados?sslmode=disable
     depends_on:
       database:
         condition: service_healthy
